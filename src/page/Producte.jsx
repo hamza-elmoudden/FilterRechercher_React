@@ -34,27 +34,31 @@ export const Producte = () => {
 
     
     function valuetext(value) {
-        return `${value}°C`;
+        return `${value}$`;
     }
 
     let data = useSelector((state)=> state.producte[0])
 
-    data = Ginder === "" ? data : data.filter(prod => prod.type === Ginder)
 
-    data = Category === "" ? data : data.filter(prod => prod.category === Category)
-
-    data = Price  === 0 ? data : data.filter(prod => prod.price <= Price )
-
-
-    const filteredData = data.filter(prod => prod.title.toLowerCase().includes(searchText.toLowerCase()));
   
-    console.log(data)
+    const filteredData = data.filter((prod) => {
+
+        const matchesSearch = prod.title.toLowerCase().includes(searchText.toLowerCase());
+
+        const matchesGender = Ginder === "" || prod.type === Ginder;
+
+        const matchesCategory = Category === "" || prod.category === Category;
+
+        const matchesPrice = Price === 0 || prod.price <= Price;
+
+        return matchesSearch && matchesGender && matchesCategory && matchesPrice;
+    })
 
     return (
       <>
       <section className="py-10"></section>
-      <section className="he flex">
-        <div className="w-1/3  pt-32 px-8 space-y-16">
+      <section className="he flex md:flex-row flex-col px-10 md:px-0">
+        <div className=" w-full md:w-1/3  pt-32 px-8 space-y-16">
             <div>
                 <select className="w-full h-16 font-bold text-xl capitalize px-5 rounded-xl"
                 onChange={(e)=>setCategory(e.target.value)}
@@ -101,10 +105,14 @@ export const Producte = () => {
             <div className="md:py-10 text-center pt-32">
                 <input value={searchText} onChange={(e) => setSearchText(e.target.value)} className="px-6 py-3 text-xl outline-none border border-black w-full md:w-1/3 rounded-full" type="text" />
             </div>
-            <div className="flex row  items-center gap-10 justify-center py-10 flex-wrap"> 
+            <div className="flex items-center gap-10 justify-center py-10 flex-wrap row"> 
             {
                 filteredData.map((prod) => {
-                return <Card prod={prod} key={prod._id} /> 
+                return( 
+                    <section className="w-full sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/5" key={prod._id}>
+                        <Card prod={prod}  /> 
+                    </section>
+            )
                 })
             }
             </div>

@@ -10,15 +10,14 @@ export const Card = (props) => {
   
   return (
     <>
-      <section className="w-full md:w-1/4 overflow-hidden cursor-pointer ">
-                <div className="relative  overflow-hidden">
+                <div className="relative  overflow-hidden ">
                     <div className="py-4 px-8 md:py-1 md:px-4 bg-green-700 w-fit absolute top-0 right-0 text-white">
                        -70%
                     </div>
                     <div  className="py-4 px-8 md:py-1 md:px-4 bg-black w-fit absolute top-0 left-0 text-white">
                         New
                     </div>
-                    <img className="w-full"  src={urlFor(prod.image_one.asset._ref)} alt="Producte Not Found" />
+                    <img className=""    src={urlFor(prod.image_one.asset._ref)} alt="Producte Not Found" />
                 </div>
                 <div className=''>      
                 <div className="px-2 py-6 space-y-10">
@@ -39,7 +38,6 @@ export const Card = (props) => {
                     </div>
                 </div>
                 </div>
-      </section>
     </>
   )
 }
