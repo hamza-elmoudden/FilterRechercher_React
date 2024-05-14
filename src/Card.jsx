@@ -10,7 +10,7 @@ export const Card = (props) => {
   
   return (
     <>
-                <div className="relative  overflow-hidden ">
+                <div className="relative  overflow-hidden">
                     <div className="py-4 px-8 md:py-1 md:px-4 bg-green-700 w-fit absolute top-0 right-0 text-white">
                        -70%
                     </div>
